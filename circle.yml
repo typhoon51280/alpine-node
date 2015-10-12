@@ -1,0 +1,15 @@
+## Customize the test machine
+machine:
+
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build -t typhoon51280/alpine-node .
+
+test:
+  override:
+    - docker run -d --name=alpine-node typhoon51280/alpine-node node -v ; sleep 30
+    - docker logs alpine-node || grep "4.1.2"
