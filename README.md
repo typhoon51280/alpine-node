@@ -7,4 +7,4 @@ For more information on nodejs read the documentation at [https://nodejs.org/en/
 
 This build is available on the Docker hub at [typhoon51280/alpine-node](https://hub.docker.com/r/typhoon51280/alpine-node/).
 
-Current build status: [![Build Status](https://travis-ci.org/typhoon51280/alpine-node.svg?branch=master)](https://travis-ci.org/typhoon51280/alpine-node)
+Current build status: [![Build Status](https://circleci.com/gh/typhoon51280/alpine-node/tree/master.svg?style=shield&circle-token=9b2db64e81c8af3e1dfed46b45980fe782c01415)](https://circleci.com/gh/typhoon51280/alpine-node)
