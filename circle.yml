@@ -11,12 +11,12 @@ dependencies:
     - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
     - docker build -t typhoon51280/alpine-node .
     - mkdir -p ~/docker; docker save typhoon51280/alpine-node > ~/docker/image.tar
+    - docker history "typhoon51280/alpine-node"
 
 test:
   override:
     - docker run -d --name=alpine-node typhoon51280/alpine-node node -v ; sleep 10
     - docker logs alpine-node | grep "v4.1.2"
-    - docker rm alpine-node
 
 deployment:
   hub: 
