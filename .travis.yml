@@ -12,3 +12,6 @@ script:
   # - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   # - docker push typhoon51280/alpine-node
  # - curl --retry 10 --retry-delay 5 -I http://localhost:8080/ | grep "HTTP/1.1 200 OK"
+
+notifications:
+  email: false
