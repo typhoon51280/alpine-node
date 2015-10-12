@@ -1,15 +1,26 @@
 ## Customize the test machine
 machine:
-
   services:
     - docker
 
 dependencies:
+  cache_directories:
+    - "~/docker"
   override:
     - docker info
+    - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
     - docker build -t typhoon51280/alpine-node .
+    - mkdir -p ~/docker; docker save typhoon51280/alpine-node > ~/docker/image.tar
 
 test:
   override:
-    - docker run -d --name=alpine-node typhoon51280/alpine-node node -v ; sleep 30
-    - docker logs alpine-node || grep "4.1.2"
+    - docker run -d --name=alpine-node typhoon51280/alpine-node node -v ; sleep 10
+    - docker logs alpine-node | grep "v4.1.2"
+    - docker rm alpine-node
+
+deployment:
+  hub: 
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push typhoon51280/alpine-node
